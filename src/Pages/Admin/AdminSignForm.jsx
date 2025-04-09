@@ -1,92 +1,70 @@
+import axios from 'axios';
 import React from 'react';
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const AdminSignForm = () => {
+  const navigate = useNavigate();
+  const [adminData, setAdminData] = React.useState({
+    AdminName: "",
+    Password: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAdminData({ ...adminData, [name]: value });
+  };
+
+  const SubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+
+      await axios.post("http://localhost:3000/adminsapi/adminlogin", adminData);
+      localStorage.setItem("user", JSON.stringify({ role: "admin", name: adminData.AdminName }));
+      navigate('/admindashboard');
+    } catch (err) {
+      console.error("Login failed", err);
+    }
+  };
+
   return (
-    <StyledWrapper>
-      <form className="form">
-        <p className="form-title">Sign in as Admin </p>
-        <div className="input-container">
-          <input type="email" placeholder="Enter email" />
-          <span>
-          </span>
+    <div className="flex justify-center items-center min-h-screen">
+      <form
+        className="bg-white p-4 max-w-sm w-full rounded-lg shadow-md"
+        onSubmit={SubmitHandler}
+      >
+        <p className="text-xl font-semibold text-center text-black mb-4">Admin Login</p>
+        
+        <div className="relative mb-4">
+          <input
+            type="email"
+            placeholder="Enter email"
+            name="AdminName"
+            value={adminData.AdminName}
+            onChange={handleChange}
+            className="bg-white p-4 pr-12 text-sm w-full border border-gray-300 rounded-lg shadow-sm outline-none"
+          />
         </div>
-        <div className="input-container">
-          <input type="password" placeholder="Enter password" />
+        
+        <div className="relative mb-4">
+          <input
+            type="password"
+            placeholder="Enter password"
+            name="Password"
+            value={adminData.Password}
+            onChange={handleChange}
+            className="bg-white p-4 pr-12 text-sm w-full border border-gray-300 rounded-lg shadow-sm outline-none"
+          />
         </div>
-        <button type="submit" className="submit">
+        
+        <button
+          type="submit"
+          className="block w-full py-3 px-5 bg-indigo-600 text-white text-sm font-medium rounded-lg uppercase"
+        >
           Sign in
         </button>
-        
       </form>
-    </StyledWrapper>
+    </div>
   );
-}
-
-const StyledWrapper = styled.div`
-  .form {
-    background-color: #fff;
-    display: block;
-    padding: 1rem;
-    max-width: 350px;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  .form-title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-    text-align: center;
-    color: #000;
-  }
-
-  .input-container {
-    position: relative;
-  }
-
-  .input-container input, .form button {
-    outline: none;
-    border: 1px solid #e5e7eb;
-    margin: 8px 0;
-  }
-
-  .input-container input {
-    background-color: #fff;
-    padding: 1rem;
-    padding-right: 3rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    width: 300px;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  }
-
-  .submit {
-    display: block;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    background-color: #4F46E5;
-    color: #ffffff;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    font-weight: 500;
-    width: 100%;
-    border-radius: 0.5rem;
-    text-transform: uppercase;
-  }
-
-  .signup-link {
-    color: #6B7280;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: center;
-  }
-
-  .signup-link a {
-    text-decoration: underline;
-  }`;
+};
 
 export default AdminSignForm;

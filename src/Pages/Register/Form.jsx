@@ -1,171 +1,108 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 const Form = () => {
+  const navigate = useNavigate();
+
+  const [userData, setuserData] = useState({
+    Name: "",
+    Email: "",
+    Phone: "",
+    ReferalCode: "",
+    Password: ""
+  });
+
+  const HandleInput = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setuserData({ ...userData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post("", userData).then((res) => {
+      navigate('/login');
+    });
+  };
+
   return (
-    <StyledWrapper>
-      <form className="form">
-        <p className="title">Register </p>
-        <p className="message">Signup now and get full access to our app. </p>
-        <div className="flex">
-          <label>
-            <input required placeholder type="text" className="input" />
-            <span>Firstname</span>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <form
+        className="flex flex-col gap-2 max-w-sm bg-white p-5 rounded-2xl relative shadow-md w-full"
+        onSubmit={handleSubmit}
+      >
+        {/* Title with dots and animation */}
+        <p className="text-[28px] text-[royalblue] font-semibold tracking-tight relative flex items-center pl-8">
+          Register
+          <span className="absolute left-0 w-4 h-4 bg-[royalblue] rounded-full" />
+          <span className="absolute left-0 w-4 h-4 bg-[royalblue] rounded-full animate-ping" />
+        </p>
+
+        {/* Subtext */}
+        <p className="text-sm text-gray-600">
+          Signup now and get full access to our app.
+        </p>
+
+        {/* Name */}
+        <div className="flex gap-2">
+          <label className="relative w-full">
+            <input
+              required
+              type="text"
+              name="Name"
+              value={userData.Name}
+              onChange={HandleInput}
+              placeholder=" "
+              className="w-full p-3 pb-5 border border-gray-400 rounded-xl peer outline-none"
+            />
+            <span className="absolute left-3 top-[14px] text-gray-500 text-sm peer-placeholder-shown:top-[14px] peer-placeholder-shown:text-sm peer-focus:top-7 peer-focus:text-xs peer-focus:font-semibold peer-valid:text-green-600 transition-all duration-300">
+              Name
+            </span>
           </label>
-          <label>
-            <input required placeholder type="text" className="input" />
-            <span>Lastname</span>
+        </div>
+
+        {/* Other inputs */}
+        {[
+          { label: 'Email', type: 'email' },
+          { label: 'Phone', type: 'tel' },
+          { label: 'ReferalCode', type: 'text', display: 'Refereral code' },
+          { label: 'Password', type: 'password' },
+        ].map(({ label, type, display }) => (
+          <label key={label} className="relative">
+            <input
+              required
+              type={type}
+              name={label}
+              value={userData[label]}
+              onChange={HandleInput}
+              placeholder=" "
+              className="w-full p-3 pb-5 border border-gray-400 rounded-xl peer outline-none"
+            />
+            <span className="absolute left-3 top-[14px] text-gray-500 text-sm peer-placeholder-shown:top-[14px] peer-placeholder-shown:text-sm peer-focus:top-7 peer-focus:text-xs peer-focus:font-semibold peer-valid:text-green-600 transition-all duration-300">
+              {display || label}
+            </span>
           </label>
-        </div>  
-        <label>
-          <input required placeholder type="email" className="input" />
-          <span>Email</span>
-        </label> 
-        <label>
-          <input required placeholder type="password" className="input" />
-          <span>Password</span>
-        </label>
-        <label>
-          <input required placeholder type="password" className="input" />
-          <span>Confirm password</span>
-        </label>
-        <button className="submit">Submit</button>
-        <p className="signin">Already have an acount ? <Link to="/login">Signin</Link> </p>
+        ))}
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="border-none outline-none bg-[royalblue] hover:bg-blue-700 text-white p-3 rounded-xl text-[16px] transition-all"
+        >
+          Submit
+        </button>
+
+        {/* Sign in link */}
+        <p className="text-sm text-center text-gray-600">
+          Already have an account?{" "}
+          <Link to="/login" className="text-[royalblue] hover:underline">
+            Signin
+          </Link>
+        </p>
       </form>
-    </StyledWrapper>
+    </div>
   );
-}
-
-const StyledWrapper = styled.div`
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 350px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    position: relative;
-  }
-
-  .title {
-    font-size: 28px;
-    color: royalblue;
-    font-weight: 600;
-    letter-spacing: -1px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-  }
-
-  .title::before,.title::after {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    left: 0px;
-    background-color: royalblue;
-  }
-
-  .title::before {
-    width: 18px;
-    height: 18px;
-    background-color: royalblue;
-  }
-
-  .title::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-  }
-
-  .message, .signin {
-    color: rgba(88, 87, 87, 0.822);
-    font-size: 14px;
-  }
-
-  .signin {
-    text-align: center;
-  }
-
-  .signin a {
-    color: royalblue;
-  }
-
-  .signin a:hover {
-    text-decoration: underline royalblue;
-  }
-
-  .flex {
-    display: flex;
-    width: 100%;
-    gap: 6px;
-  }
-
-  .form label {
-    position: relative;
-  }
-
-  .form label .input {
-    width: 100%;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 10px;
-  }
-
-  .form label .input + span {
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-  }
-
-  .form label .input:placeholder-shown + span {
-    top: 15px;
-    font-size: 0.9em;
-  }
-
-  .form label .input:focus + span,.form label .input:valid + span {
-    top: 30px;
-    font-size: 0.7em;
-    font-weight: 600;
-  }
-
-  .form label .input:valid + span {
-    color: green;
-  }
-
-  .submit {
-    border: none;
-    outline: none;
-    background-color: royalblue;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    transform: .3s ease;
-  }
-
-  .submit:hover {
-    background-color: rgb(56, 90, 194);
-  }
-
-  @keyframes pulse {
-    from {
-      transform: scale(0.9);
-      opacity: 1;
-    }
-
-    to {
-      transform: scale(1.8);
-      opacity: 0;
-    }
-  }`;
+};
 
 export default Form;

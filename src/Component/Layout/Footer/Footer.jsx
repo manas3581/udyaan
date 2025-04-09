@@ -16,9 +16,8 @@ const Footer = () => {
     <footer className="footer ">
       <div className="footer-container ">
         <div className="footer-brand">
-
           <p>
-          <img src="./logo1.png" alt="Urvann Logo" className="footer-logo h-5 " />
+          <img src="./logo1.png" alt="Urvann Logo" className="footer-logo h-24 " />
             Urvann is your one-stop online nursery for plants, planters,
             gardening accessories, and tools. Order fresh plants and get free
             home delivery on the next day!

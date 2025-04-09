@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import Sidebar1 from "./Sidebar1.jsx";
 import Sidebar3 from "./Sidebar3.jsx";
 import Layout from "../Component/Layout/Layout.jsx";
 import PlantCard from "../Component/Other/Carousel2/PlantsCard.jsx";
+import { useParams } from "react-router-dom";
+import { Axios } from "axios";
 
 const FloweringPlants = () => {
 
@@ -26,6 +27,14 @@ const FloweringPlants = () => {
     { id: 16, name: "Pothos", price: "₹90", image: "/plant_images/1.avif" },
   ];
   
+  const category = useParams()
+  
+  // useEffect(() => {
+  //   Axios.get(`http://localhost:3000/api/category/${category.category}`).then((res) => {
+      
+  //   })
+  // ,[]})
+  
   return (
     <Layout>
       <div>
@@ -35,9 +44,9 @@ const FloweringPlants = () => {
             <Sidebar3 />
           </div>
           <div className="flex-1 h-[100svh] hide-scrollbar overflow-auto">
-          <div className="w-full mt-[2rem] grid grid-cols-2 md:grid-cols-4 gap-4 ">
+          <div className="w-full mt-[2rem] px-2 grid grid-cols-2 md:grid-cols-4 md:gap-4 ">
             {
-              plants.map((plant)=>(<PlantCard name={plant.name} price={plant.price} image={plant.image} />))
+              plants.map((plant)=>(<PlantCard key={plant.id} name={plant.name} price={plant.price} image={plant.image} />))
             }
           </div>
           </div>

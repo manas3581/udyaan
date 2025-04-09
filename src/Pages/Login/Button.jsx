@@ -5,9 +5,7 @@ import styled from 'styled-components';
 const Button = () => {
   return (
     <StyledWrapper>
-      <button className="button">
-        <Link to="/adminlogin"><span>SignIn as Admin</span></Link>
-      </button>
+        <
     </StyledWrapper>
   );
 }

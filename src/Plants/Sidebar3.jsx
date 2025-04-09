@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "preline/preline.js";
 
 const Sidebar3 = () => {
-  useEffect(() => {
-    import("preline").then(({ HSOverlay }) => {
-      HSOverlay.autoInit();
-    });
-  }, []);
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [accordionOpen, setAccordionOpen] = useState({
+    categories: false,
+    plants: false,
+    flowering: false,
+  });
+
+  const toggleAccordion = (key) => {
+    setAccordionOpen((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   return (
     <div>
@@ -93,211 +98,128 @@ const Sidebar3 = () => {
 
           {/* Body */}
 
-          <nav className="h-full overflow-y-auto hidden lg:block [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
-            <div
-              className="hs-accordion-group pb-0 px-2  w-full flex flex-col flex-wrap"
-              data-hs-accordion-always-open
+          <nav className="h-full overflow-y-auto px-2 pb-4 custom-scrollbar">
+        <ul className="space-y-1">
+          {/* Categories Accordion */}
+          <li>
+            <button
+              className="w-full flex items-center justify-between py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
+              onClick={() => toggleAccordion("categories")}
             >
-              <ul className="space-y-1">
-                <li className="hs-accordion" id="users-accordion">
+              Categories
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+              >
+                {accordionOpen.categories ? (
+                  <path d="m18 15-6-6-6 6" />
+                ) : (
+                  <path d="m6 9 6 6 6-6" />
+                )}
+              </svg>
+            </button>
+
+            {accordionOpen.categories && (
+              <ul className="pl-4 space-y-1">
+                {/* Plants Accordion */}
+                <li>
                   <button
-                    type="button"
-                    className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                    aria-expanded="true"
-                    aria-controls="users-accordion-collapse-1"
+                    className="w-full flex items-center justify-between py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
+                    onClick={() => toggleAccordion("plants")}
                   >
-                    Categories
+                    Plants
                     <svg
-                      className="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
+                      className="w-4 h-4"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                    >
-                      <path d="m18 15-6-6-6 6" />
-                    </svg>
-                    <svg
-                      className="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
                       viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
                     >
-                      <path d="m6 9 6 6 6-6" />
+                      {accordionOpen.plants ? (
+                        <path d="m18 15-6-6-6 6" />
+                      ) : (
+                        <path d="m6 9 6 6 6-6" />
+                      )}
                     </svg>
                   </button>
 
-                  <div
-                    id="users-accordion-collapse-1"
-                    className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
-                    role="region"
-                    aria-labelledby="users-accordion"
-                  >
-                    <ul
-                      className="hs-accordion-group pt-1 ps-7 space-y-1"
-                      data-hs-accordion-always-open
-                    >
-                      <li className="hs-accordion" id="users-accordion-sub-1">
-                        <button
-                          type="button"
-                          className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                          aria-expanded="true"
-                          aria-controls="users-accordion-sub-1-collapse-1"
-                        >
-                          Plants
-                          <svg
-                            className="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m18 15-6-6-6 6" />
-                          </svg>
-                          <svg
-                            className="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m6 9 6 6 6-6" />
-                          </svg>
-                        </button>
-
-                        <div
-                          id="users-accordion-sub-1-collapse-1"
-                          className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
-                          role="region"
-                          aria-labelledby="users-accordion-sub-1"
-                        >
-                          <ul className="pt-1 ps-2 space-y-1">
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                                href="#"
-                              >
-                                Link 1
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                                href="#"
-                              >
-                                Link 2
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                                href="#"
-                              >
-                                Link 3
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
+                  {accordionOpen.plants && (
+                    <ul className="pl-4 space-y-1">
+                      <li>
+                        <a href="#" className="block py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 rounded-lg">
+                          Link 1
+                        </a>
                       </li>
-
-                      <li className="hs-accordion" id="users-accordion-sub-2">
-                        <button
-                          type="button"
-                          className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                          aria-expanded="true"
-                          aria-controls="users-accordion-sub-2-collapse-1"
-                        >
-                          Flowering Plants
-                          <svg
-                            className="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m18 15-6-6-6 6" />
-                          </svg>
-                          <svg
-                            className="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m6 9 6 6 6-6" />
-                          </svg>
-                        </button>
-
-                        <div
-                          id="users-accordion-sub-2-collapse-1"
-                          className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
-                          role="region"
-                          aria-labelledby="users-accordion-sub-2"
-                        >
-                          <ul className="pt-1 ps-2 space-y-1">
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                                href="#"
-                              >
-                                Link 1
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                                href="#"
-                              >
-                                Link 2
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
-                                href="#"
-                              >
-                                Link 3
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
+                      <li>
+                        <a href="#" className="block py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 rounded-lg">
+                          Link 2
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" className="block py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 rounded-lg">
+                          Link 3
+                        </a>
                       </li>
                     </ul>
-                  </div>
+                  )}
+                </li>
+
+                {/* Flowering Accordion */}
+                <li>
+                  <button
+                    className="w-full flex items-center justify-between py-2 px-3 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
+                    onClick={() => toggleAccordion("flowering")}
+                  >
+                    Flowering Plants
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      {accordionOpen.flowering ? (
+                        <path d="m18 15-6-6-6 6" />
+                      ) : (
+                        <path d="m6 9 6 6 6-6" />
+                      )}
+                    </svg>
+                  </button>
+
+                  {accordionOpen.flowering && (
+                    <ul className="pl-4 space-y-1">
+                      <li>
+                        <a href="#" className="block py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 rounded-lg">
+                          Link 1
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" className="block py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 rounded-lg">
+                          Link 2
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" className="block py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 rounded-lg">
+                          Link 3
+                        </a>
+                      </li>
+                    </ul>
+                  )}
                 </li>
               </ul>
-            </div>
-          </nav>
+            )}
+          </li>
+        </ul>
+      </nav>
           {/* End Body */}
         </div>
       </div>
