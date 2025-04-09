@@ -581,7 +581,7 @@ const Navbar = () => {
       <div className="main-navbar">
         <div className="logo">
           <Link to="/">
-            <img src="/logo.avif" alt="Nurvann Logo" />
+            <img src="/logo1.jpg" alt="Nurvann Logo" />
           </Link>
         </div>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./PopularCateg.css";
 
 // Import images
@@ -11,7 +11,6 @@ import popcat5 from "/popcat5.avif";
 import popcat6 from "/popcat6.avif";
 
 const PopularCateg = () => {
-  const navigate = useNavigate();
   const categories = [
     { id: 1, name: "Flowering Plants", image: popcat1, path: "/browse/flowering-plants" },
     { id: 2, name: "Indoor Plants", image: popcat2, path: "/browse/indoor-plants" },
@@ -26,16 +25,18 @@ const PopularCateg = () => {
       <h2 className="popular-categories-title">Popular Categories</h2>
       <div className="categories-grid">
         {categories.map((category) => (
-          <div key={category.id} className="category-item" onClick={() => navigate(category.path)}>
-            <div className="category-image-container">
-              <img
-                src={category.image}
-                alt={category.name}
-                className="category-image"
-              />
+          <Link key={category.id} to={category.path} className="category-item">
+            <div>
+              <div className="category-image-container">
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="category-image"
+                />
+              </div>
+              <p className="category-name">{category.name}</p>
             </div>
-            <p className="category-name">{category.name}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -43,4 +44,3 @@ const PopularCateg = () => {
 };
 
 export default PopularCateg;
-
