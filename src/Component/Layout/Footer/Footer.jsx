@@ -37,7 +37,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="footer">
+    <footer className="footer flex!">
       <div className="footer-container">
         <div className="footer-brand">
           <h1>Urvann</h1>
@@ -48,7 +48,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="footer-columns">
+        <div className="footer-columns ">
           {/* Information Column */}
           <div className="footer-column">
             <h3>Information</h3>

@@ -3,3 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+
+
+@import "tailwindcss";
+@plugin "flyonui";
+@import "flyonui/variants.css";
+@source "./node_modules/flyonui/flyonui.js"; 
+
+
