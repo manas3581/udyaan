@@ -12,12 +12,12 @@ import popcat6 from "/popcat6.avif";
 
 const PopularCateg = () => {
   const categories = [
-    { id: 1, name: "Flowering Plants", image: popcat1, path: "/browse/flowering-plants" },
-    { id: 2, name: "Indoor Plants", image: popcat2, path: "/browse/indoor-plants" },
-    { id: 3, name: "Potted Plants", image: popcat3, path: "/browse/potted-plants" },
-    { id: 4, name: "Special Plant Combos", image: popcat4, path: "/browse/special-plant-combos" },
-    { id: 5, name: "Pots", image: popcat5, path: "/browse/pots" },
-    { id: 6, name: "Soil & More", image: popcat6, path: "/browse/soil-and-more" },
+    { id: 1, name: "Flowering Plants", image: popcat1, path: "/flowering-plants" },
+    { id: 2, name: "Indoor Plants", image: popcat2, path: "/indoor-plants" },
+    { id: 3, name: "Potted Plants", image: popcat3, path: "/potted-plants" },
+    { id: 4, name: "Special Plant Combos", image: popcat4, path: "/special-plant-combos" },
+    { id: 5, name: "Pots", image: popcat5, path: "/pots" },
+    { id: 6, name: "Soil & More", image: popcat6, path: "/soil-and-more" },
   ];
 
   return (

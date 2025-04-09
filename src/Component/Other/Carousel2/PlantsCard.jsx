@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { useParams } from "react-router-dom";
 
 const PlantCard = ({ id, name, price, image }) => {
   return (
