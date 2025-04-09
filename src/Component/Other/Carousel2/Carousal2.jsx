@@ -26,12 +26,14 @@ const Carousel2 = () => {
     { id: 16, name: "Pothos", price: "₹90", image: "/plant_images/1.avif" },
   ];
 
-  const updateCardsPerView = () => {
+    const updateCardsPerView = () => {
     const screenWidth = window.innerWidth;
-    if (screenWidth < 768) {
-      setCardsPerView(2);
+    if (screenWidth < 640) {
+      setCardsPerView(1); // 1 card on small screens
+    } else if (screenWidth < 768) {
+      setCardsPerView(2); // 2 cards on medium screens
     } else {
-      setCardsPerView(4);
+      setCardsPerView(4); // 4 cards on large screens
     }
   };
 
@@ -52,10 +54,10 @@ const Carousel2 = () => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden px-4 py-6 mb-4!  rounded-xl">
+    <div className="relative w-full overflow-hidden px-4 py-6 mb-4 rounded-xl">
       <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className=" transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {Array.from({ length: totalSlides }).map((_, groupIndex) => {
@@ -64,7 +66,7 @@ const Carousel2 = () => {
             const slidePlants = plants.slice(start, end);
 
             return (
-              <div key={groupIndex} className="min-w-full flex justify-center gap-4 px-2">
+              <div key={groupIndex} className=" flex flex-wrap justify-center gap-4 px-2 h-[28rem]">
                 {slidePlants.map((plant) => (
                   <div className="w-full sm:w-1/2 lg:w-1/4 max-w-xs" key={plant.id}>
                     <PlantCard name={plant.name} price={plant.price} image={plant.image} />
@@ -79,13 +81,13 @@ const Carousel2 = () => {
       {/* Navigation Buttons */}
       <button
         onClick={handlePrev}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition"
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 h-[2rem] w-[2rem] rounded-full shadow-md hover:bg-gray-100 transition"
       >
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 h-[2rem] w-[2rem] rounded-full shadow-md hover:bg-gray-100 transition"
       >
         <FontAwesomeIcon icon={faChevronRight} />
       </button>

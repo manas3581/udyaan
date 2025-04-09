@@ -3,8 +3,8 @@ import Button from "./Button";
 
 const PlantCard = () => {
   return (
-    <div className="card-info cursor-pointer w-64  mx-auto flex flex-col items-center justify-between border rounded-lg shadow-lg overflow-hidden">
-      <div className="image relative w-full h-2/3">
+    <div className=" outline card-info cursor-pointer w-full sm:w-72 mx-auto flex flex-col items-center justify-between rounded-lg shadow-lg overflow-hidden">
+      <div className="image relative w-full  h-48 overflow-hidden">
         <div className="offer absolute top-2 right-2 bg-red-600 text-white px-2 py-1 text-xs font-bold rounded">
           63%
           <br />OFF
@@ -12,15 +12,15 @@ const PlantCard = () => {
         <img
           src="plant_images/1.avif" // Use forward slashes for paths
           alt="Hibiscus"
-          className="zoom w-full h-full object-cover rounded"
+          className="zoom w-full h-full object-cover" 
         />
       </div>
 
-      <div className="price mt-2 text-center w-full mb-4">
+      <div className="price mt-2 text-center w-full mb-4 px-2">
         <p className="mt-2 text-sm font-medium">
           Hibiscus Double (any colour) in 4 Inch Nursery Bag
         </p>
-        <span className="actual-price text-green-600 font-bold mr-2">₹35</span>
+        <span className="actual-price text-green-600 font-bold mr-2">₹35</span> |
         <span className="strike-price text-gray-500 line-through text-sm">₹219</span>
         <br />
         <span className="review text-yellow-500 mt-1 inline-block">
@@ -33,9 +33,9 @@ const PlantCard = () => {
           </span>
         </span>
         <br />
-       <div className="mb-6 mt-4">
-       <Button/>
-       </div>
+        <div className="mb-6 mt-4">
+          <Button />
+        </div>
       </div>
     </div>
   );

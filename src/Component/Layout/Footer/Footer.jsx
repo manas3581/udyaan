@@ -1,54 +1,31 @@
 import React from "react";
-import "./Footer.css";
+import "./Footer.css"; // Ensure you have styles defined in this file
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
   const nav1 = [
-    {
-      id: 1,
-      title: "About Us",
-      path: "/",
-    },
-    {
-      id: 2,
-      title: "Contact Us",
-      path: "/login",
-    },
-    {
-      id: 3,
-      title: "Careers",
-      path: "/",
-    },
-    {
-      id: 4,
-      title: "Blogs",
-      path: "/",
-    },
-    {
-      id: 5,
-      title: "Get Help",
-      path: "/",
-    },
-  ];
-
-  const nav2 = [
-    {}
+    { id: 1, title: "About Us", path: "/" },
+    { id: 2, title: "Contact Us", path: "/login" },
+    { id: 3, title: "Careers", path: "/" },
+    { id: 4, title: "Blogs", path: "/" },
+    { id: 5, title: "Get Help", path: "/" },
   ];
 
   return (
-    <footer className="footer flex!">
-      <div className="footer-container">
+    <footer className="footer ">
+      <div className="footer-container ">
         <div className="footer-brand">
-          <h1>Urvann</h1>
+
           <p>
+          <img src="./logo1.png" alt="Urvann Logo" className="footer-logo h-5 " />
             Urvann is your one-stop online nursery for plants, planters,
             gardening accessories, and tools. Order fresh plants and get free
             home delivery on the next day!
           </p>
         </div>
 
-        <div className="footer-columns ">
+        <div className="footer-columns">
           {/* Information Column */}
           <div className="footer-column">
             <h3>Information</h3>
@@ -80,7 +57,7 @@ const Footer = () => {
             <ul>
               <li>My Account</li>
               <li>Wishlist</li>
-              <li>Track order</li>
+              <li>Track Order</li>
             </ul>
           </div>
 
@@ -92,7 +69,7 @@ const Footer = () => {
               <li>Planters & Pots</li>
               <li>Soil Fertilizers & Pesticides</li>
               <li>Seeds & Bulbs</li>
-              <li>Gardening Tools & Equipments</li>
+              <li>Gardening Tools & Equipment</li>
               <li>Gifting</li>
               <li>Decor</li>
               <li>Membership & Gift Cards</li>
@@ -164,7 +141,6 @@ const Footer = () => {
               <li>Patio Plants</li>
               <li>Bamboo Plants</li>
               <li>Special Plant Combos</li>
-              <li>Bonsai Plants</li>
               <li>Pet Friendly Plants</li>
               <li>Plants to grow in Water</li>
               <li>Mountain Plants</li>
@@ -184,7 +160,7 @@ const Footer = () => {
 
           {/* Gardening Tools Column */}
           <div className="footer-column">
-            <h3>Gardening Tools & Equipments</h3>
+            <h3>Gardening Tools & Equipment</h3>
             <ul>
               <li>Watering Tools</li>
               <li>Gardening Tools</li>
@@ -197,7 +173,7 @@ const Footer = () => {
             <h3>Soil & Fertilizers</h3>
             <ul>
               <li>Fertilizers</li>
-              <li>Soil additives</li>
+              <li>Soil Additives</li>
               <li>Potting Mixes</li>
               <li>Pesticides & Insecticides</li>
             </ul>

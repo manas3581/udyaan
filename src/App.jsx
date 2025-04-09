@@ -14,6 +14,8 @@ import Help from "./Pages/Help/Help.jsx";
 import AdminLogin from "./Pages/Admin/AdminLogin.jsx";
 import Navbar from "./Component/Layout/Navbar/Navbar.jsx";
 import Footer from "./Component/Layout/Footer/Footer.jsx";
+import FloweringPlants from "./Plants/FloweringPlants.jsx";
+import 'preline/preline.js';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         
       <Route path="/" element={<Home />} />
         <Route path="/browse/:category" element={<CategoryType />} />
+        <Route path="/browse/flowering-plants" element={<FloweringPlants />} />
+        
         <Route path="/collection/:sale" element={<Sale />} />
         <Route path="/product/:details" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />

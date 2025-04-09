@@ -38,7 +38,7 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="full-width-carousel outline">
+    <div className="full-width-carousel ">
       <div className="carousel-images">
         {images.map((image, index) => (
           <div
