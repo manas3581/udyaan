@@ -15,22 +15,21 @@ import AdminLogin from "./Pages/Admin/AdminLogin.jsx";
 import Navbar from "./Component/Layout/Navbar/Navbar.jsx";
 import Footer from "./Component/Layout/Footer/Footer.jsx";
 import FloweringPlants from "./Plants/FloweringPlants.jsx";
-import 'preline/preline.js';
+import "preline/preline.js";
 
 function App() {
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <Routes>
-        
-      <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/browse/:category" element={<CategoryType />} />
         <Route path="/browse/flowering-plants" element={<FloweringPlants />} />
-        
+
         <Route path="/collection/:sale" element={<Sale />} />
         <Route path="/product/:details" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
-       
+
         <Route path="adminlogin" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/search" element={<SearchResult />} />
@@ -39,7 +38,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/help" element={<Help />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 }
